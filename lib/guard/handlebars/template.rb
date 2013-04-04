@@ -34,7 +34,11 @@ module Guard
       end
 
       def camelcase(s)
-        s.gsub(/^[a-z]|_[a-z]/) { |a| a.upcase }.gsub(/_/, '').gsub(/^[A-Z]/) {|a| a.downcase}
+        if @options[:emberjs]
+          s.gsub(/^[A-Z]/) {|a| a.downcase}
+        else
+          s.gsub(/^[a-z]|_[a-z]/) { |a| a.upcase }.gsub(/_/, '').gsub(/^[A-Z]/) {|a| a.downcase}
+        end
       end
 
       def function
